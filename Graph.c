@@ -48,3 +48,25 @@ typedef struct {
 	Edgenode *link;
 } Vexnode;
 Vexnode ga[n];
+
+void
+CreateAdjlist(Vexnode ga[]) { // 建立无向图的邻接表
+	int i, j, k;
+	Edgenode *s;
+	for (i = 0; i < N; i++) {
+		ga[i].vertex = getchar(); //读入顶点信息和边表头指针初始化
+		ga[i].link = NULL;
+	}
+	for (k = 0; k < E; k++) { //建立边表
+		scanf("%d%d", &i, &j); //读入边(vi, vj)的顶点序号
+		s = (Edgenode*)malloc(sizeof(Edgenode)); //生成邻接点序号为j的边表结点*s
+		s->adjvex = j;
+		s->next = NULL;
+		ga[i].link = s; // 将*s插入顶点vi的边表头部
+		s = (Edgenode*)malloc(sizeof(Edgenode)); //生成邻接点序号为i的边表结点*s
+		s->adjvex = i;
+		s->next = NULL;
+		ga[j].link = s; // 将*s插入顶点vi的边表头部
+	}
+}
+		
