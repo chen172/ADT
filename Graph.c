@@ -56,6 +56,7 @@ CreateGraph(Graph *g) // 建立无向网络
 
 typedef struct node { // 邻接链表结点
 	int adjvex; // 邻接点域
+	// int quan; // 权重
 	struct node *next; // 链域
 } Edgenode;
 
@@ -80,10 +81,16 @@ CreateAdjlist(Vexnode ga[]) { // 建立无向图的邻接表
 		// also can s->next = ga[i].link ??????
 		s->next = NULL;
 		ga[i].link = s; // 将*s插入顶点vi的边表头部
+		
+		// 如果要建立有向图的邻接表，去掉下面这段代码
+		#if 1
 		s = (Edgenode*)malloc(sizeof(Edgenode)); //生成邻接点序号为i的边表结点*s
 		s->adjvex = i;
 		s->next = NULL;
 		ga[j].link = s; // 将*s插入顶点vi的边表头部
+		#endif
 	}
 }
+
+// 上述算法的执行时间复杂度时O(n+e)
 		
