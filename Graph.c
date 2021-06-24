@@ -52,18 +52,18 @@ CreateGraph(Graph *g) // 建立无向网络
 } 
 // Note:
 // 上述算法，当邻接矩阵是一个稀疏矩阵时， 会存在储存空间浪费现象。（即顶点很多，边很少）
-// 上述算法的时间复杂度为O(n+n^2+e)。
+// 上述算法的时间复杂度为O(n+n^2+e)。因为通常情况下e<<n^2, 所以该算法的时间复杂度为O(n^2)
 
-typedef struct node {
-	int adjvex;
-	struct node *next;
+typedef struct node { // 邻接链表结点
+	int adjvex; // 邻接点域
+	struct node *next; // 链域
 } Edgenode;
 
 typedef struct {
-	Vextype vertex;
-	Edgenode *link;
+	Vextype vertex;  // 顶点域
+	Edgenode *link; // 指针域
 } Vexnode;
-Vexnode ga[n];
+Vexnode ga[n]; // 顶点表
 
 void
 CreateAdjlist(Vexnode ga[]) { // 建立无向图的邻接表
