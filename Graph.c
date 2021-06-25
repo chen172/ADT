@@ -151,3 +151,15 @@ void DFSA(int i) {
 		if ((g.arcs[i][j] == 1) && (visited[j] == 0))
 			DFSA(j);
 }
+
+void DFSL(int i) {
+	Edgenode *p;
+	printf("node:%c\n", ga[i].vertex);
+	visited[i] = 1;
+	p = ga[i].link;
+	while(p != NULL) {
+		if (visited[p->adjvex] == 0)
+			DFSL(p->adjvex);
+		p = p->next;
+	}
+}
