@@ -93,4 +93,47 @@ CreateAdjlist(Vexnode ga[]) { // 建立无向图的邻接表
 }
 
 // 上述算法的执行时间复杂度时O(n+e)
-		
+
+// 广度优先搜索遍历
+int visited[n];
+Graph g;
+SequenQueue *Q; // Q为顺序队列
+void BFSA(int k) { // 从vk出发广度优先搜索遍历图g,g用邻接矩阵表示
+	int i, j;
+	SetNull(Q); // Q置为空队列
+	printf("%c\n", g.vexs[k]); // 访问出发点vk
+	visited[k] = 1; // 标记vk已经被访问了
+	EnQueue(Q, k); // 访问过的顶点序号入队
+	while(!Empty(Q)) { // 队非空时执行下面的操作
+		i = DeQueue(Q); // 队头的元素序号出队
+		for (j = 0; j < n; j++)
+			if ((g.arcs[i][j] == 1) && (visited[j] != 1)) {
+				printf("%c\n", g.vexs[j]); // 访问vi未曾访问的邻接点vj
+				visited[j] = 1;
+				Enqueue(Q, j); // 访问过的顶点入队
+			}
+	}
+}
+
+Vexnode ga[n];
+void BFSL(k) { // 从vk出发广度优先搜索遍历图ga, ga采用邻接表表示
+	int i;
+	Edgenode *p;
+	SetNull(Q);
+	printf("%c\n", ga[k].vertex);
+	visited[k] = 1;
+	EnQueue(Q, k);
+	while(!Empty(Q)) {
+		i = Dequeue(Q);
+		p = ga[i].link;
+		while(p != NULL) { // 依次搜索vi的邻接点
+			if (visited[p->adjvex] != 1) {
+				printf("%c\n", ga[p->adjvex].vertex);
+				visited[p->adjvex] = 1;
+				EnQueue(Q, p->adjvex);
+			}
+			p = p->next;
+		}
+	}
+}
+
