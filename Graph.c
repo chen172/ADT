@@ -98,6 +98,7 @@ CreateAdjlist(Vexnode ga[]) { // 建立无向图的邻接表
 int visited[n];
 Graph g;
 SequenQueue *Q; // Q为顺序队列
+// 时间复杂度为O(n^2)
 void BFSA(int k) { // 从vk出发广度优先搜索遍历图g,g用邻接矩阵表示
 	int i, j;
 	SetNull(Q); // Q置为空队列
@@ -115,7 +116,10 @@ void BFSA(int k) { // 从vk出发广度优先搜索遍历图g,g用邻接矩阵�
 	}
 }
 
+
+
 Vexnode ga[n];
+// 时间复杂度为O(n+2e)
 void BFSL(k) { // 从vk出发广度优先搜索遍历图ga, ga采用邻接表表示
 	int i;
 	Edgenode *p;
