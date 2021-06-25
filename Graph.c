@@ -141,3 +141,13 @@ void BFSL(k) { // 从vk出发广度优先搜索遍历图ga, ga采用邻接表表
 	}
 }
 
+int visited[N];
+Graph global_g; 
+void DFSA(int i) {
+	int j;
+	printf("node:%c\n", g.vexs[i]);
+	visited[i] = 1;
+	for (j = 0; j < N; j++)
+		if ((g.arcs[i][j] == 1) && (visited[j] == 0))
+			DFSA(j);
+}
